@@ -1,0 +1,27 @@
+"""
+Experiment 4: Selection and Dynamic Programming
+Program 2: Kth Largest using Quick Select
+Aim: Find the kth largest element using partitioning.
+"""
+
+def kth_largest(a, k):
+    a = a[:]
+    target = len(a) - k
+    left, right = 0, len(a) - 1
+    while left <= right:
+        pivot = a[right]
+        p = left
+        for i in range(left, right):
+            if a[i] <= pivot:
+                a[p], a[i] = a[i], a[p]
+                p += 1
+        a[p], a[right] = a[right], a[p]
+        if p == target:
+            return a[p]
+        if p < target:
+            left = p + 1
+        else:
+            right = p - 1
+    return None
+
+print(kth_largest([3, 2, 1, 5, 6, 4], 2))

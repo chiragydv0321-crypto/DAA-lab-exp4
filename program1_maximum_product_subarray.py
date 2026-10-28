@@ -1,0 +1,17 @@
+"""
+Experiment 4: Selection and Dynamic Programming
+Program 1: Maximum Product Subarray
+Aim: Find the maximum product of a contiguous subarray.
+"""
+
+def max_product(a):
+    best = high = low = a[0]
+    for x in a[1:]:
+        if x < 0:
+            high, low = low, high
+        high = max(x, high * x)
+        low = min(x, low * x)
+        best = max(best, high)
+    return best
+
+print(max_product([2, 3, -2, 4]))
